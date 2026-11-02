@@ -1,13 +1,14 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   color: #1A1B22;
   font-family: 'Roboto Slab';
   font-size: 20px;
   line-height: 24px;
+  
 }
+
+/* #root{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+} */

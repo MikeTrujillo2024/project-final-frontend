@@ -8,7 +8,7 @@
     background: transparent;
     padding: 0 104px;
     box-sizing: border-box;
-    position: relative;
+    position: absolute;
     z-index: 10;
 }
 
