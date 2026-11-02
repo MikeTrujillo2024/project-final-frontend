@@ -1,0 +1,84 @@
+.search{
+    width: 100%;
+    height: 576px;
+    background-image:  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url("../images/fondoSearch.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;    
+    position: absolute;
+    top: 0;
+}
+
+.search__wrap{
+    color:aliceblue;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 160px;
+}
+
+.search__text{
+   width: 608px;
+   height: 128px;
+   font-family: "Roboto Slab", serif;
+   font-weight: 400;
+   font-size: 60px;
+   line-height: 64px;
+   margin-bottom: 32px;
+}
+
+.search__text--notice{
+    width: 608px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 0;
+
+}
+
+.search__form{
+    width: 608px;
+    height: 64px;
+   
+}
+
+.search__form>form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    
+}
+
+.search__input{
+    height: 100%;
+    border-radius: 50px;
+    padding: 0 190px 0 24px ;
+    border: none;
+    flex: 1;
+}
+
+.search__button{
+    width: 168px;
+    height: 64px;
+    border-radius: 50px;
+    background: #2F71E5;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    position: absolute;
+    right: 0;  
+    border: none;
+    
+}
+
+
+.search__input::placeholder{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+}

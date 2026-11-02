@@ -1,8 +1,12 @@
-import Header from "./Header/Header"
+import Header from "./Header/Header";
+import SearchForm from "./SearchForm/SearchForm";
 function App() {
   return (
-    <Header />
-  )
+    <>
+      <Header />
+      <SearchForm />
+    </>
+  );
 }
 
-export default App
+export default App;

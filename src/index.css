@@ -1,7 +1,8 @@
 @import url(vendor/normalize.css);
-@import url(vendor/fonts.css);
+@import url(vendor/fonts/fonts.css);
 @import url(blocks/root.css);
 @import url(blocks/headers.css);
+@import url(blocks/searchForm.css);
 
 /* :root {
   --text: #6b6375;
