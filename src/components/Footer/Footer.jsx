@@ -9,7 +9,7 @@ export default function Footer(){
                     <li>
                         Inicio
                     </li>
-                    <li>
+                    <li className="footer__lista-practicum">
                         Practicum
                     </li>
                     <li>

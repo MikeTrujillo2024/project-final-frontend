@@ -1,8 +1,8 @@
-.header{
+.header {
     width: 100%;
     height: 80px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    display: flex;    
+    display: flex;
     justify-content: space-between;
     align-items: center;
     background: transparent;
@@ -12,7 +12,7 @@
     z-index: 10;
 }
 
-.header__logo{
+.header__logo {
     width: 200px;
     height: 24px;
     font-weight: 700;
@@ -21,7 +21,7 @@
     font-family: "Roboto Slab", serif;
 }
 
-.header__navigation{
+.header__navigation {
     width: 270px;
     display: flex;
     justify-content: space-between;
@@ -30,7 +30,8 @@
     font-weight: 500;
     font-family: "Roboto", sans-serif;
 }
-.header__link{
+
+.header__link {
     width: 44px;
     height: 24px;
     font-size: 18px;
@@ -38,15 +39,91 @@
 }
 
 .header__link,
-.header__button{
+.header__button {
     color: #FFF;
     cursor: pointer;
 }
 
-.header__button{
+.header__button {
     width: 176px;
     height: 48px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
     background: none;
+}
+
+
+
+.header__menu-movil {
+    border: none;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3px;
+}
+
+.header__menu-barraOne,
+.header__menu-barraTwo {
+    width: 80%;
+    height: 3px;
+    background: white;
+}
+
+.header__menu-movil {
+    display: none;
+}
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 0 40px;
+    }
+}
+
+/* Móvil */
+@media screen and (max-width: 480px) {
+    .header {
+        padding: 0 16px;
+        z-index: 10;
+    }
+
+    .header__navigation {
+        display: none;
+        /*  display: flex; */
+        position: absolute;
+        background-color: #1A1B22;
+        left: 0px;
+        width: 100%;
+        height: 230px;
+        top: 80px;
+        z-index: 0;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: start;
+        gap: 22px;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .header__button {
+        width: 100%;
+    }
+
+    .header__menu-movil {
+        display: flex;
+    }
+
+    /* .header__menu-barraOne {
+        rotate: 50deg;
+    }
+
+    .header__menu-barraTwo {
+        position: relative;
+        top: -6px;
+        rotate: -50deg;
+
+    } */
 }
