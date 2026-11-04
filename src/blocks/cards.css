@@ -1,0 +1,159 @@
+.cards {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0 100px;
+}
+
+.cards__title {
+    width: 712px;
+    height: 46px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 80px;
+    margin-bottom: 64px;
+
+
+}
+
+.cards__title-huno {
+    font-family: 'Roboto Slab', serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 46px;
+    color: #1A1B22
+}
+
+.cards__card-list {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.cards__card {
+    width: 400px;
+    height: 576px;
+    background: #FFF;
+    position: relative;
+    z-index: 0;
+}
+
+.cards__wrapper {
+    top: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+}
+
+.cards__tooltip {
+    display: none;
+    position: absolute;
+    background: #FFF;
+    width: 182px;
+    height: 40px;
+    right: 50px;
+    border-radius: 10px;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.cards__wrapper:hover .cards__tooltip {
+    display: flex;
+}
+
+.cards__img {
+    width: 100%;
+    height: 272px;
+    object-fit: cover;
+}
+
+.cards__button-save {
+    width: 40px;
+    height: 40px;
+    background: url("../images/bookmark.png");
+    background-repeat: no-repeat;
+    background-color: #FFF;
+    background-position: center;
+    background-size: contain;
+    border: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 3;
+    border-radius: 8px;
+    cursor: pointer;
+    color: black;
+}
+
+.cards__info {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.cards__date {
+    position: relative;
+    width: 150px;
+    height: 24px;
+    top: 5px;
+    font-family: "Source Code Pro", monospace;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: #B6BCBF;
+}
+
+.cards__title-info {
+    position: relative;
+    top: 5px;
+    width: 352px;
+    height: 60px;
+    font-family: 'Roboto Salb', sans-serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cards__datail{
+    position: relative;
+    top: 10px;
+    width: 352px;
+    height: 130px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cards__footer{
+    position: relative;
+    width: 130px;
+    height: 20px;
+    top: 18px;
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    color:#B6BCBF
+}
