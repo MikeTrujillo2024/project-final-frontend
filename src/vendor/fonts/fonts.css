@@ -11,8 +11,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf")
-    format("woff2");
+  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf") format("woff2");
 }
 
 @font-face {
@@ -20,8 +19,7 @@
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf")
-    format("woff2");
+  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf") format("woff2");
 }
 
 @font-face {
@@ -29,8 +27,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf")
-    format("woff2");
+  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf") format("woff2");
 }
 
 @font-face {
@@ -38,8 +35,7 @@
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf")
-    format("woff2");
+  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf") format("woff2");
 }
 
 
@@ -62,6 +58,14 @@
 @font-face {
   font-family: "Source Code Pro";
   src: url("./web/SourceCodePro-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./web/Inter-VariableFont_opsz\,wght.ttf") format("truetype");
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
