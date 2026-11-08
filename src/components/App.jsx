@@ -4,7 +4,6 @@ import SearchForm from "./SearchForm/SearchForm";
 import Cards from "./Cards/Cards";
 import About from "./About/About";
 import Footer from "./Footer/Footer";
-import Popup from "./Popup/Popup";
 import SigIn from "./Popup/PopupSystem/PopupSigin";
 import Signup from "./Popup/PopupSystem/PopupSignup";
 function App() {

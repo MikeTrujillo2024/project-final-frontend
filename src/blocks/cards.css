@@ -182,6 +182,15 @@
     color: #1A1B22;
 }
 
+
+
+
+.cards__button-more:hover{
+    background-color: #E8E8E8;
+    cursor:pointer
+
+}
+
 /* Tablet */
 @media screen and (max-width: 768px) {
     .cards {
@@ -260,7 +269,6 @@
 .cards__button-more{
     width: 240px;
 }
-
 }
 
 /* Móvil */

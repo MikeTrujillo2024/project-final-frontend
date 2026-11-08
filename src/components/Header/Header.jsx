@@ -3,7 +3,7 @@ import Popup from "../Popup/Popup";
 export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
   // menu Movil
   const [isMenuOpen, setisMenuOpen] = useState(false);
-  
+
   return (
     <header className={`header ${isMenuOpen ? "hader_active" : ""}`}>
       <div className="header__logo">NewsExplorer</div>
@@ -15,7 +15,7 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
         <i className={`header__menu-barraTwo  ${isMenuOpen ? "header__menu-barraTwo--acttive" : ""}`}></i>
       </button>
       <nav className="header__navigation">
-        <a className="header__link" href="/">
+        <a className="header__link header__link_active" href="/">
           Inicio
         </a>
         <button

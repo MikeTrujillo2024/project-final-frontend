@@ -83,6 +83,10 @@
     line-height: 22px;
 }
 
+.search__button:hover {
+    cursor: pointer;
+    background-color: #2A65CC;
+}
 
 /* Tablet */
 @media screen and (max-width: 768px) {
