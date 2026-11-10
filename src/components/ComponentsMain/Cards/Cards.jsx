@@ -1,6 +1,6 @@
-import perro from "../../images/image_perro.png";
-import montana from "../../images/image_Montana.png";
-import cirvo from "../../images/image_ciervo.png";
+import perro from "../../../images/image_perro.png";
+import montana from "../../../images/image_Montana.png";
+import cirvo from "../../../images/image_ciervo.png";
 export default function Card() {
   return (
     <section className="cards">
