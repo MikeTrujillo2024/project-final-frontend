@@ -19,21 +19,21 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
     setisMenuOpen(false);
     navigate("/");
   }
-
+console.log(isSavedNews)
   return (
     <header
       className={`header ${isMenuOpen ? "hader_active" : ""}  ${isSavedNews ? "header_saved-news header__news" : ""}`}
     >
-      <div className="header__logo">NewsExplorer</div>
+      <div className={`header__logo ${isMenuOpen ? "header__words-white" : ""} `}>NewsExplorer</div>
       <button
         className="header__button-movil"
         onClick={() => setisMenuOpen(!isMenuOpen)}
       >
         <i
-          className={`header__menu-barraOne  ${isMenuOpen ? "header__menu-barraOne--acttive" : ""}`}
+          className={`header__menu-barraOne  ${isMenuOpen ? "header__menu-barraOne--acttive " : "header__active_movil"} ${!isSavedNews ? "header__savedNone" : ""}`}
         ></i>
         <i
-          className={`header__menu-barraTwo  ${isMenuOpen ? "header__menu-barraTwo--acttive" : ""}`}
+          className={`header__menu-barraTwo  ${isMenuOpen ? "header__menu-barraTwo--acttive" : "header__active_movil"}  ${!isSavedNews ? "header__savedNone" : ""}`}
         ></i>
       </button>
       <nav className="header__navigation">
@@ -69,14 +69,14 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
         )}
       </nav>
       {isMenuOpen && (
-        <div className="header__movil">
+        <div className={`header__movil  ${isSavedNews ? "header_saved-news header__news" : ""}`}>
           <nav className="header__navigation-movil">
-            <a className="header__link header__link_active" href="/">
+            <a className={`header__link ${!isSavedNews ? "header__link_active" : ""}`} href="/">
               Inicio
             </a>
             {isLoggedIn && (
-              <>
-                <a className="header__link " href="/saved-news">
+              <> 
+                <a className={`header__link ${isSavedNews ? "header__link_active" : ""}`} href="/saved-news">
                   Artículos guardados
                 </a>
                 <button className="header__button header__button-user"

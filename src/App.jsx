@@ -4,8 +4,8 @@ import Main from "./pages/Main/Main";
 import SavedNews from "./pages/SavedNews/SavedNews";
 import { useState } from "react";
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const [user, setUser] = useState("mike");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState(null);
   return (
     <CurrentUserContext.Provider value={{
       isLoggedIn,

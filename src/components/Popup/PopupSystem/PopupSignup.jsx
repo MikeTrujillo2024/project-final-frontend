@@ -66,7 +66,7 @@ export default function PopupSigin({ onSign }) {
     <>
       <form className="poup__form-sigin" onSubmit={handleSubmit} noValidate>
         <div className="popup__wrapper-formInput">
-          <label className="poup__form-label" htmlFor="idPopupSigin">
+          <label className="poup__form-label" htmlFor="popup__email">
             Correo electrónico
           </label>
           <input
@@ -74,7 +74,7 @@ export default function PopupSigin({ onSign }) {
             className="popup__form-input"
             name="email"
             value={data.email}
-            id="idPopupSigin"
+            id="popup__email"
             onChange={handleChangeEmail}
             placeholder="Introduce tu correo electrónico"
             required
@@ -83,7 +83,7 @@ export default function PopupSigin({ onSign }) {
         </div>
 
         <div className="popup__wrapper-formInput">
-          <label className="poup__form-label" htmlFor="idPopupSigin">
+          <label className="poup__form-label" htmlFor="popup__password">
             Contraseña
           </label>
           <input
@@ -94,7 +94,7 @@ export default function PopupSigin({ onSign }) {
             onChange={handleChangePassword}
             onFocus={() => setShowPassInfo(true)}
             onBlur={() => setShowPassInfo(false)}
-            id="idPopupSigin"
+            id="popup__password"
             placeholder="Introduce tu contraseña"
             required
           />
@@ -112,16 +112,16 @@ export default function PopupSigin({ onSign }) {
           )}
         </div>
         <div className="popup__wrapper-formInput">
-          <label className="poup__form-label" htmlFor="idPopupSigin">
+          <label className="poup__form-label" htmlFor="popup__name">
             Nombre de usuario
           </label>
           <input
-            type="email"
+            type="text"
             className="popup__form-input"
             name="nameUser"
             value={data.nameUser}
             onChange={handleChangeUserName}
-            id="idPopupSigin"
+            id="popup__name"
             placeholder="Introduce tu nombre de usuario"
             required
           />
@@ -129,12 +129,12 @@ export default function PopupSigin({ onSign }) {
         </div>
         <div className="popup__button">
           <button type="submit" className="popup__button-submit" disabled={!isFormValid}>
-            Iniciar sesión
+            Inscribirse
           </button>
         </div>
       </form>
       <button className="popup__button-link" onClick={onSign} >
-        o iniciara sesion
+        o iniciar sesión
       </button>
     </>
   );

@@ -51,6 +51,7 @@
         justify-content: flex-end;
         padding: 0 104px;
         box-sizing: border-box;
+       
     }
 
     .footer__redesSociales-lista {
@@ -62,6 +63,7 @@
         align-items: flex-start;
         gap: 24px;
         cursor: pointer;
+        
     }
 
     .footer__lista-practicum {

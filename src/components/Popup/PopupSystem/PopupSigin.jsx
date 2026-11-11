@@ -55,7 +55,7 @@ export default function PopupSigin({ onSignUp }) {
     <>
       <form className="poup__form-sigin" onSubmit={handleSubmit} noValidate>
         <div className="popup__wrapper-formInput">
-          <label className="poup__form-label" htmlFor="idPopupSigin">
+          <label className="poup__form-label" htmlFor="popup__sigin-email">
             Correo electrónico
           </label>
           <input
@@ -64,14 +64,14 @@ export default function PopupSigin({ onSignUp }) {
             name="email__Sigin"
             value={data.email__Sigin}
             onChange={handleChangeEmail}
-            id="idPopupSigin"
+            id="popup__sigin-email"
             placeholder="Introduce tu correo electrónico"
             required
           />
           <span className="inputs_span form__input-error_active">{`${errorEmail}`}</span>
         </div>
         <div className="popup__wrapper-formInput">
-          <label className="poup__form-label" htmlFor="idPopupSigin">
+          <label className="poup__form-label" htmlFor="popup__sigin-password">
             Contraseña
           </label>
           <input
@@ -82,7 +82,7 @@ export default function PopupSigin({ onSignUp }) {
             onChange={handlePassword}
             onFocus={() => setShowPassInfo(true)}
             onBlur={() => setShowPassInfo(false)}
-            id="idPopupSigin"
+            id="popup__sigin-password"
             placeholder="Introduce tu contraseña"
             required
           />
