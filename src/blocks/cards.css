@@ -1,10 +1,12 @@
 .cards {
     max-width: 100%;
     height: auto;
+    min-height: 282px;
     display: flex;
     flex-direction: column;
     padding: 0 100px;
     background: #F5F6F7;
+    position: relative;
 }
 
 .cards__title {

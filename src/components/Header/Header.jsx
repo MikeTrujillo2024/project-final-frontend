@@ -19,7 +19,7 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
     setisMenuOpen(false);
     navigate("/");
   }
-console.log(isSavedNews)
+  
   return (
     <header
       className={`header ${isMenuOpen ? "hader_active" : ""}  ${isSavedNews ? "header_saved-news header__news" : ""}`}

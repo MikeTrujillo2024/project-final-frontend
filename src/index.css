@@ -9,7 +9,7 @@
 @import url(blocks/popup.css);
 @import url(blocks/SavedNewHeader.css);
 @import url(blocks/SavedNewsCards.css);
-
+@import url(blocks/preloader.css);
 /* :root {
   --text: #6b6375;
   --text-h: #08060d;
