@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useLocation } from "react-router-dom";
 import Popup from "../Popup/Popup";
@@ -24,7 +24,7 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
     <header
       className={`header ${isMenuOpen ? "hader_active" : ""}  ${isSavedNews ? "header_saved-news header__news" : ""}`}
     >
-      <div className={`header__logo ${isMenuOpen ? "header__words-white" : ""} `}>NewsExplorer</div>
+      <Link to="/" className={`header__logo ${isMenuOpen ? "header__words-white" : ""} `}>NewsExplorer</Link>
       <button
         className="header__button-movil"
         onClick={() => setisMenuOpen(!isMenuOpen)}
