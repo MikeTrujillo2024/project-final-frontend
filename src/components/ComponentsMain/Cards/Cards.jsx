@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Preloader from "../../Preloader/Preloader";
 import articles from "../../../utils/MockArticles";
+import NotFound from "../../NotFound/NotFound";
 export default function Card() {
   // muestra el preloader mientras se cargan las tarjetas
   const [isLoading, setIsLoading] = useState(false);
@@ -8,6 +9,7 @@ export default function Card() {
   const [visibleCards, setVisibleCards] = useState(3);
 
   const showcards = articles.slice(0, visibleCards);
+
 
   const handleShowMore = () => {
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 3);
@@ -17,6 +19,8 @@ export default function Card() {
     <section className="cards">
       {isLoading ? (
         <Preloader />
+      ) : articles.length === 0 ? (
+        <NotFound />
       ) : (
         <>
           <div className="cards__title">

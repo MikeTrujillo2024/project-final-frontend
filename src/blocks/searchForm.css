@@ -146,29 +146,37 @@
 
     .search__form {
         width: 288px;
-        height: 128px;
+        height: 172px;
 
     }
 
     .search__form>form {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        
+         gap: 12px;
 
     }
+
+    .search__input,
+.search__button {
+    flex-shrink: 0;
+}
 
     .search__input {
         flex: unset;
         height: 56px;
         border-radius: 50px;
-        padding: 0 190px 0 24px;
-        border: none;
+        padding:  0 24px;
+        border: 1px solid #1A1B22;
+        box-sizing: border-box;
     }
 
     .search__button {
         position: relative;
         width: 100%;
         right: inherit;
+        height: 104px;
     }
 
     .search__input::placeholder {

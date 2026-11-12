@@ -1,0 +1,31 @@
+.not__found {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 86px;
+    background: #f9fafa
+}
+
+.not__found-title {
+    width: 356px;
+    height: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: center;
+}
+
+.not__found-description {
+    width: 356px;
+    height: 48px;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 18px;
+    line-height: 24px;
+    text-align: center;
+}

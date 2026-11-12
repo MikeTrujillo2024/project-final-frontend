@@ -10,6 +10,7 @@
 @import url(blocks/SavedNewHeader.css);
 @import url(blocks/SavedNewsCards.css);
 @import url(blocks/preloader.css);
+@import url(blocks/notFound.css);
 /* :root {
   --text: #6b6375;
   --text-h: #08060d;
