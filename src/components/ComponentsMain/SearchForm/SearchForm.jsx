@@ -1,4 +1,17 @@
-export default function SearchForm() {
+import { useState } from "react";
+export default function SearchForm({onSearch}) {
+  const [searchValue, setSearchValue] = useState("");
+
+  // creamos onsubmit para que cuando el usuario haga click en el boton de buscar, se ejecute la funcion handleSubmit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const keyword = searchValue.trim();
+    if (!keyword.trim()) {
+      return;
+    }
+    
+    onSearch(keyword);
+  };
   return (
     <div className="search">
       <section className="search__wrap">
@@ -7,12 +20,14 @@ export default function SearchForm() {
           Encuentra las últimas noticias sobre cualquier tema y guárdalas en tu
           cuenta personal.
         </p>
-        <div className="search__form">
+        <div className="search__form" noValidate onSubmit={handleSubmit}>
           <form noValidate>
             <input
               type="text"
               name="searchName"
               id="search__input--id"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
               className="search__input"
               placeholder="Introduce un tema"
             />

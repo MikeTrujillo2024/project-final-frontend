@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Preloader from "../../Preloader/Preloader";
-import articles from "../../../utils/MockArticles";
 import NotFound from "../../NotFound/NotFound";
-export default function Card() {
+import NewsCard from "./NewsCard";
+export default function NewsCardList({ articles }) {
   // muestra el preloader mientras se cargan las tarjetas
   const [isLoading, setIsLoading] = useState(false);
   // controla la cantidad de tarjetas visibles
@@ -10,6 +10,9 @@ export default function Card() {
 
   const showcards = articles.slice(0, visibleCards);
 
+  useEffect(() => {
+    setVisibleCards(3);
+  }, [articles]);
 
   const handleShowMore = () => {
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 3);
@@ -28,25 +31,7 @@ export default function Card() {
           </div>
           <div className="cards__card-list">
             {showcards.map((article) => (
-              <div className="cards__card" key={article.id}>
-                <div className="cards__wrapper">
-                  <button className="cards__button-save"></button>
-                  <span className="cards__tooltip">
-                    Sign in to save articles
-                  </span>
-                </div>
-                <img
-                  src={article.image}
-                  alt="imagen cards"
-                  className="cards__img"
-                />
-                <div className="cards__info">
-                  <div className="cards__date">{article.date}</div>
-                  <div className="cards__title-info">{article.title}</div>
-                  <div className="cards__datail">{article.text}</div>
-                  <div className="cards__footer">{article.source}</div>
-                </div>
-              </div>
+              <NewsCard key={article.id} article={article} isSaved={false}/>
             ))}
           </div>
           {visibleCards < articles.length && (

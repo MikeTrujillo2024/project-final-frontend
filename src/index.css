@@ -3,7 +3,7 @@
 @import url(blocks/root.css);
 @import url(blocks/headers.css);
 @import url(blocks/searchForm.css);
-@import url(blocks/cards.css);
+@import url(blocks/NewsCard.css);
 @import url(blocks/about.css);
 @import url(blocks/footer.css);
 @import url(blocks/popup.css);

@@ -205,7 +205,7 @@
 
 /* Móvil */
 @media screen and (max-width: 480px) {
-    .section__cards {
+    .section__card {
         padding: 0px 30px;
     }
 

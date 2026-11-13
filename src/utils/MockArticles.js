@@ -22,7 +22,7 @@ const articles = [
     {
     id: 3,
     keyword: "Espacio",
-    title: "Antena de espacuio",
+    title: "Antena de espacio",
     text: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     date: "2026-11-11",
     source: "Treehugger",
