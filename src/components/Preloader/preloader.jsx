@@ -1,3 +1,3 @@
 export default function Preloader(){
-    return <i class="circle-preloader"></i>
+    return <i className="circle-preloader"></i>
 }

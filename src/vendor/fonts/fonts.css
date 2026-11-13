@@ -1,25 +1,9 @@
 @font-face {
-  font-family: InterVariable;
+  font-family: "InterVariable";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../fonts/web/InterDisplay-Regular.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf") format("woff2");
-}
-
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf") format("woff2");
+  src: url(./web/InterDisplay-Regular.woff2) format("woff2");
 }
 
 @font-face {
@@ -27,15 +11,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf") format("woff2");
-}
-
-@font-face {
-  font-family: "InterDisplay";
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url("../fonts/web/Inter/Inter-VariableFont_slnt\,wght.ttf") format("woff2");
+  src: url("./web/InterDisplay-Regular.woff2") format("woff2");
 }
 
 
@@ -49,7 +25,7 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url("./web/Roboto-VariableFont_wdth\,wght.ttf") format("true");
+  src: url("./web/Roboto-VariableFont_wdth\,wght.ttf") format("truetype");
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;

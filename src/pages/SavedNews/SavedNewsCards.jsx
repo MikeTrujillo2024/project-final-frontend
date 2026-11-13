@@ -1,8 +1,7 @@
 import perro from "../../images/image_perro.png";
 import NewsCard from "../../components/ComponentsMain/Cards/NewsCard";
-export default function SavedNewsCards({savedArticles, handleRemoveArticle}) {
-
-/* const saveArticles = [
+export default function SavedNewsCards({ savedArticles, handleRemoveArticle }) {
+  /* const saveArticles = [
   {
     id: 1,
     image: perro,
@@ -53,16 +52,21 @@ export default function SavedNewsCards({savedArticles, handleRemoveArticle}) {
   return (
     <section className="section__cards">
       <div className="section__card-list">
-        {savedArticles.map((article) =>(
-          <NewsCard key={article.id}
-          article={article}
-          isSaved={true}
-          onRemove={handleRemoveArticle}
-          />
-        ))}
-        
+        {savedArticles.length === 0 ? (
+          <p className="section__empty">
+            No has guardado ningún artículo todavía
+          </p>
+        ) : (
+          savedArticles.map((article) => (
+            <NewsCard
+              key={article.id}
+              article={article}
+              isSaved={true}
+              onRemove={handleRemoveArticle}
+            />
+          ))
+        )}
       </div>
     </section>
   );
 }
- 

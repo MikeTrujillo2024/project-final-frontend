@@ -7,7 +7,7 @@ function SavedNews({savedArticles,handleRemoveArticle}) {
   return (
     <>
       <Header />
-      <SavedNewHeader />
+      <SavedNewHeader savedArticles={savedArticles} />
       <SavedNewsCards savedArticles={savedArticles} handleRemoveArticle={handleRemoveArticle}/>
       <Footer />
     </>

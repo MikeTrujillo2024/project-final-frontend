@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { useLocation } from "react-router-dom";
 import Popup from "../Popup/Popup";
 
 export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
@@ -37,20 +36,20 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
         ></i>
       </button>
       <nav className="header__navigation">
-        <a
+        <Link 
           className={`header__link ${!isSavedNews ? "header__link_active " : "header__color"}`}
-          href="/"
+          to="/"
         >
           Inicio
-        </a>
+        </Link>
         {isLoggedIn && (
           <>
-            <a
+            <Link
               className={`header__link ${isSavedNews ? "header__link_active header__color " : ""}`}
-              href="/saved-news"
+              to="/saved-news"
             >
               Artículos guardados
-            </a>
+            </Link>
             <button
               className={`header__button header__button-user ${isSavedNews ? "header__button_news" : ""}`}
               onClick={logOut}
@@ -71,14 +70,14 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
       {isMenuOpen && (
         <div className={`header__movil  ${isSavedNews ? "header_saved-news header__news" : ""}`}>
           <nav className="header__navigation-movil">
-            <a className={`header__link ${!isSavedNews ? "header__link_active" : ""}`} href="/">
+            <Link className={`header__link ${!isSavedNews ? "header__link_active" : ""}`} to="/">
               Inicio
-            </a>
+            </Link>
             {isLoggedIn && (
               <> 
-                <a className={`header__link ${isSavedNews ? "header__link_active" : ""}`} href="/saved-news">
+                <Link className={`header__link ${isSavedNews ? "header__link_active" : ""}`} to="/saved-news">
                   Artículos guardados
-                </a>
+                </Link>
                 <button className="header__button header__button-user"
                   onClick={logOut}>
                   {user}

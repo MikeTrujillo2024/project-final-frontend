@@ -1,4 +1,5 @@
- export default function SavedNewHeader() {
+ export default function SavedNewHeader({savedArticles}) {
+    const keyword = [...new Set(savedArticles.map((article) => article.keyword))];
   return (
   <section className="section">
     <div className="section__wrapp">
@@ -6,10 +7,10 @@
             Artículos guardadosd
         </div>
         <div className="section__articles">
-            Elise, tienes 5 artículos guardados
+            Elise, tienes {savedArticles.length} artículos guardados
         </div>
         <div className="section__keyWord">
-            Por palabras clave:<strong>Naturaleza, Yellowstone, y 2 más</strong> 
+            Por palabras clave:<strong>{keyword.join(", ")}</strong> 
         </div>
     </div>  
   </section>
