@@ -1,4 +1,4 @@
-export default function NewsCard({ article, isSaved }) {
+export default function NewsCard({ article, isSaved, onSave, onRemove }) {
   return (
     <div className={isSaved ? "section__card" : "cards__card"} >
       <div className={isSaved ? "section__wrapper" : "cards__wrapper"}>
@@ -8,13 +8,13 @@ export default function NewsCard({ article, isSaved }) {
                <span className="section__tag">{article.keyword}</span>
             </div>
             <div className="section__wrapper-trash">
-               <button className="section__button-save"></button>
+               <button className="section__button-save" onClick={() => onRemove(article)}></button>
               <span className="section__tooltip">Remove from Saved</span>
             </div>
           </>
         ) : (
           <>
-            <button className="cards__button-save"></button>
+            <button className="cards__button-save" onClick={() => onSave(article)}></button>
             <span className="cards__tooltip">Sign in to save articles</span>
           </>
         )}

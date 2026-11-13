@@ -3,12 +3,12 @@ import Footer from "../../components/Footer/Footer";
 import SavedNewHeader from "./SavedNewsHeader";
 import SavedNewsCards from "./SavedNewsCards";
 
-function SavedNews() {
+function SavedNews({savedArticles,handleRemoveArticle}) {
   return (
     <>
       <Header />
       <SavedNewHeader />
-      <SavedNewsCards />
+      <SavedNewsCards savedArticles={savedArticles} handleRemoveArticle={handleRemoveArticle}/>
       <Footer />
     </>
   );

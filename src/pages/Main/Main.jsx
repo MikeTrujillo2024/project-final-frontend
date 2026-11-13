@@ -7,14 +7,15 @@ import Footer from "../../components/Footer/Footer";
 import SigIn from "../../components/Popup/PopupSystem/PopupSigin";
 import Signup from "../../components/Popup/PopupSystem/PopupSignup";
 import Articles from "../../utils/MockArticles";
-function Main() {
+function Main({ savedArticles, setSavedArticles, handleSaveArticle,handleRemoveArticle }) {
   const [isPopupOpen, setIsPopupOpen] = useState(null);
 
   // guardamos los datos del formulario de busqueda en el estado searchValue
   const [searchKeyword, setSearchKeyword] = useState("");
+  // usamos para mostrar articulos desde el principio
   const [articles, setArticles] = useState(Articles);
 
- 
+  //buscamos por searchForm
   const handleSearch = (keyword) => {
     setSearchKeyword(keyword);
     const normalizeKeyword = keyword.toLowerCase();
@@ -26,6 +27,9 @@ function Main() {
     );
     setArticles(filteredArticles);
   };
+
+
+
   //sigin
   const sigInPop = {
     title: "Iniciar Sesion",
@@ -56,7 +60,11 @@ function Main() {
         closePopup={handelClosePopup}
       />
       <SearchForm onSearch={handleSearch} />
-      <NewsCardList articles={articles} />
+      <NewsCardList 
+      articles={articles}  
+      savedArticles={savedArticles}
+      onSave={handleSaveArticle}
+      onRemove={handleRemoveArticle} />
       <About />
       <Footer />
     </>
