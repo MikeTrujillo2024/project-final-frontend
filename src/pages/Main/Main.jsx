@@ -6,29 +6,61 @@ import About from "../../components/ComponentsMain/About/About";
 import Footer from "../../components/Footer/Footer";
 import SigIn from "../../components/Popup/PopupSystem/PopupSigin";
 import Signup from "../../components/Popup/PopupSystem/PopupSignup";
-import Articles from "../../utils/MockArticles";
-function Main({ savedArticles, setSavedArticles, handleSaveArticle,handleRemoveArticle }) {
+import { getNews } from "../../utils/NewsApi";
+function Main({
+  savedArticles,
+  setSavedArticles,
+  handleSaveArticle,
+  handleRemoveArticle,
+}) {
   const [isPopupOpen, setIsPopupOpen] = useState(null);
 
   // guardamos los datos del formulario de busqueda en el estado searchValue
   const [searchKeyword, setSearchKeyword] = useState("");
   // usamos para mostrar articulos desde el principio
-  const [articles, setArticles] = useState(Articles);
+  const [articles, setArticles] = useState([]);
+
+  //estado que indique si el usuario ya realizó una búsqueda.
+  const [hasSearched, setHasSearched] = useState(false);
+
+  //controlar preloader
+  const [isLoading, setIsLoading] = useState(false);
+
+  //Este estado guardará el mensaje que queremos mostrar cuando falle la petición.
+  const [error, setError] = useState("");
 
   //buscamos por searchForm
-  const handleSearch = (keyword) => {
+  const handleSearch = async (keyword) => {
+    setHasSearched(true);
     setSearchKeyword(keyword);
-    const normalizeKeyword = keyword.toLowerCase();
+    setError("");
+    setIsLoading(true);
 
-    const filteredArticles = Articles.filter(
-      (article) =>
-        article.title.toLowerCase().includes(normalizeKeyword) ||
-        article.text.toLowerCase().includes(normalizeKeyword),
-    );
-    setArticles(filteredArticles);
+    try {
+      const articles = await getNews(keyword);
+      setArticles(articles);
+    } catch(error) {
+      if (!error.status) {
+        console.error("Error de conexión:", error.message);
+      }
+
+      console.error("Error al buscar noticias:", error);
+
+      if (error.status === 401) {
+        console.error("API key inválido o no autorizado");
+      } else if (error.status === 429) {
+        console.error("Se escedió el límite de solicitudes");
+      } else if (error.status >= 500) {
+        console.error("Error interno del servidor");
+      }
+
+      setError(
+        "Lo sentimos, algo ha salido mal durante la solicitud, Es posible que haya un problema de conexion o que el servidor ni funcione, por favor intentelo más tarde",
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
-
-
 
   //sigin
   const sigInPop = {
@@ -60,11 +92,17 @@ function Main({ savedArticles, setSavedArticles, handleSaveArticle,handleRemoveA
         closePopup={handelClosePopup}
       />
       <SearchForm onSearch={handleSearch} />
-      <NewsCardList 
-      articles={articles}  
-      savedArticles={savedArticles}
-      onSave={handleSaveArticle}
-      onRemove={handleRemoveArticle} />
+      <NewsCardList
+        articles={articles}
+        savedArticles={savedArticles}
+        onSave={(article) =>
+          handleSaveArticle({ ...article, keyword: searchKeyword })
+        }
+        onRemove={handleRemoveArticle}
+        hasSearched={hasSearched}
+        isLoading={isLoading}
+        error={error}
+      />
       <About />
       <Footer />
     </>

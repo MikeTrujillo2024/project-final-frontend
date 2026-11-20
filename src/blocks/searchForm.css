@@ -60,6 +60,13 @@
     flex: 1;
 }
 
+.search__form-error{
+    position: absolute;
+    margin-top: 12%;
+    font-size: 20px;
+     color: #e60707;
+     left: 10%;
+}
 .search__button {
     width: 168px;
     height: 64px;

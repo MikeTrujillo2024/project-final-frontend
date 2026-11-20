@@ -1,23 +1,23 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CurrentUserContext from "./contexts/CurrentUserContext";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Main from "./pages/Main/Main";
 import SavedNews from "./pages/SavedNews/SavedNews";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
-    //usamos para mostrar los datos guardados
+  //usamos para mostrar los datos guardados
   const [savedArticles, setSavedArticles] = useState(() => {
     return JSON.parse(localStorage.getItem("articles")) || [];
   });
 
-
   // handler para guardar articulos
   const handleSaveArticle = (article) => {
-    //debemos saber si ya esta guardado ela card
+    //debemos saber si ya esta guardado en la card
     const alreadySaved = savedArticles.some(
-      (savedArticle) => savedArticle.id === article.id,
+      (savedArticle) => savedArticle.url === article.url,
     );
 
     if (!alreadySaved) {
@@ -29,12 +29,11 @@ function App() {
   //handler para eliminar articulo
   const handleRemoveArticle = (article) => {
     const updateArticles = savedArticles.filter(
-      (savedArticle) => savedArticle.id !== article.id,
+      (savedArticle) => savedArticle.url !== article.url,
     );
 
     setSavedArticles(updateArticles);
   };
-
 
   //guardamos los datos en localstorage
   useEffect(() => {
@@ -64,9 +63,14 @@ function App() {
         />
         <Route
           path="/saved-news"
-          element={<SavedNews 
-            savedArticles={savedArticles}
-            handleRemoveArticle={handleRemoveArticle} />}
+          element={
+            <ProtectedRoute>
+              <SavedNews
+                savedArticles={savedArticles}
+                handleRemoveArticle={handleRemoveArticle}
+              />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </CurrentUserContext.Provider>

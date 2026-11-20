@@ -1,0 +1,7 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="40" height="40" rx="8" fill="white"/>
+<mask id="stroke0_1_1294" fill="white">
+<path d="M13 12C13 11.4477 13.4477 11 14 11H26C26.5523 11 27 11.4477 27 12V30L20 24.5L13 30V12Z"/>
+</mask>
+<path d="M27 30V12C27 11.4477 26.5523 11 26 11H14C13.4477 11 13 11.4477 13 12V30L20 24.5L27 30Z" stroke-width="4" stroke="#1A1B22" mask="url(#stroke0_1_1294)"/>
+</svg>
