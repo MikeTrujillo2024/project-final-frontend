@@ -6,6 +6,8 @@ import About from "../../components/ComponentsMain/About/About";
 import Footer from "../../components/Footer/Footer";
 import SigIn from "../../components/Popup/PopupSystem/PopupSigin";
 import Signup from "../../components/Popup/PopupSystem/PopupSignup";
+import MessageSuccessPopup from "../../components/Popup/PopupSystem/PopupSuccessMessage";
+import MessageErrorPopup from "../../components/Popup/PopupSystem/PopupErrorMessage";
 import { getNews } from "../../utils/NewsApi";
 function Main({
   savedArticles,
@@ -14,6 +16,7 @@ function Main({
   handleRemoveArticle,
 }) {
   const [isPopupOpen, setIsPopupOpen] = useState(null);
+  const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
 
   // guardamos los datos del formulario de busqueda en el estado searchValue
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -29,6 +32,13 @@ function Main({
   //Este estado guardará el mensaje que queremos mostrar cuando falle la petición.
   const [error, setError] = useState("");
 
+  // estado que conservará los datos aunque cambiemos temporalmente el contenido del popup.
+  /*   const [dataSignup, setDataSignup] = useState({
+    email: "",
+    password: "",
+    nameUser: "",
+  }); */
+
   //buscamos por searchForm
   const handleSearch = async (keyword) => {
     setHasSearched(true);
@@ -39,7 +49,7 @@ function Main({
     try {
       const articles = await getNews(keyword);
       setArticles(articles);
-    } catch(error) {
+    } catch (error) {
       if (!error.status) {
         console.error("Error de conexión:", error.message);
       }
@@ -65,18 +75,54 @@ function Main({
   //sigin
   const sigInPop = {
     title: "Iniciar Sesion",
-    children: <SigIn onSignUp={() => handleOpenPopup(sigInUp)} />,
+    children: (
+      <SigIn
+        onSignUp={() => handleOpenPopup(sigInUp)}
+        onClose={handelClosePopup}
+      />
+    ),
   };
 
   //signup
   const sigInUp = {
     title: "Inscribirse",
-    children: <Signup onSign={() => handleOpenPopup(sigInPop)} />,
+    children: (
+      <Signup
+        onSign={() => handleOpenPopup(sigInPop)}
+        onSuccess={handleShowLogin}
+        onError={handleShowError}
+      />
+    ),
   };
 
   // abrir popup
   function handleOpenPopup(popup) {
     setIsPopupOpen(popup);
+  }
+
+  function handleShowLogin() {
+    setIsRegisterSuccess(true);
+    setIsPopupOpen({
+      title: "¡El registro se ha completado con éxito!",
+      children: (
+        <MessageSuccessPopup
+          setIsRegisterSuccess={setIsRegisterSuccess}
+          onLogin={() => handleOpenPopup(sigInPop)}
+        />
+      ),
+    });
+  }
+
+  function handleShowError(message) {
+    setIsPopupOpen({
+      title: "No se pudo completar el registro",
+      children: (
+        <MessageErrorPopup
+          message={message}
+          onBack={() => -handleOpenPopup(sigInUp)}
+        />
+      ),
+    });
   }
 
   //cerrar popup
@@ -91,6 +137,7 @@ function Main({
         sigInPopup={sigInPop}
         closePopup={handelClosePopup}
       />
+
       <SearchForm onSearch={handleSearch} />
       <NewsCardList
         articles={articles}

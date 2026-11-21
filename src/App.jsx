@@ -2,11 +2,31 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import { getToken, removeToken } from "./utils/token";
+import { getCurrentUser } from "./utils/auth";
 import Main from "./pages/Main/Main";
 import SavedNews from "./pages/SavedNews/SavedNews";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+
+  // verificar si el token es valido
+  useEffect(() => {
+    const token = getToken();
+
+    if (token) {
+      getCurrentUser(token)
+        .then((response) => {
+          setUser(response.data.name);
+          setIsLoggedIn(true);
+        })
+        .catch(() => {
+          removeToken();
+          setIsLoggedIn(false);
+          setUser(null);
+        });
+    }
+  }, []);
 
   //usamos para mostrar los datos guardados
   const [savedArticles, setSavedArticles] = useState(() => {

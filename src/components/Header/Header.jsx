@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { removeToken } from "../../utils/token";
 import Popup from "../Popup/Popup";
 
 export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
@@ -13,6 +14,7 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
   const navigate = useNavigate();
 
   function logOut(){
+    removeToken();
     setIsLoggedIn(false);
     setUser(null);
     setisMenuOpen(false);

@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import CurrentUserContext from "../../../contexts/CurrentUserContext";
 import {
   isEmail,
   isPass,
   validateField,
   showError,
 } from "../../../utils/Validation";
+import { login, getCurrentUser } from "../../../utils/auth";
+import { setToken } from "../../../utils/token";
 
-export default function PopupSigin({ onSignUp }) {
+export default function PopupSigin({ onSignUp, onClose }) {
+  const { setIsLoggedIn,setUser } = useContext(CurrentUserContext);
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [showPassInfo, setShowPassInfo] = useState(false);
@@ -39,7 +43,7 @@ export default function PopupSigin({ onSignUp }) {
     setData((preData) => ({ ...preData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const email = validateField(data.email__Sigin, isEmail);
     const pass = validateField(data.password__Sigin, isPass);
@@ -48,7 +52,22 @@ export default function PopupSigin({ onSignUp }) {
     showError(pass, setErrorPassword);
 
     if (email === "valid" && pass === "valid") {
-      console.log("All is good");
+      try {
+        const response = await login({
+          email: data.email__Sigin,
+          password: data.password__Sigin,
+        });
+
+        setToken(response.token);
+
+        const userResponse = await getCurrentUser(response.token);
+        setIsLoggedIn(true);
+        setUser(userResponse.data.name);
+
+        onClose();
+      } catch (error) {
+        console.error("Error al iniciar sesión:", error.message);
+      }
     }
   };
   return (

@@ -6,16 +6,23 @@ import {
   validateField,
   showError,
 } from "../../../utils/Validation";
-export default function PopupSigin({ onSign }) {
+import { register } from "../../../utils/auth";
+export default function PopupSigin({ onSign, onSuccess, onError }) {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPass, setErrorPass] = useState("");
   const [showPassInfo, setShowPassInfo] = useState(false);
   const [errorName, setErrorName] = useState("");
-  const [data, setData] = useState({ email: "", password: "", nameUser: "" });
+  const [registerError, setRegisterError] = useState("");
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+    nameUser: "",
+  });
 
   // validar email
   const handleChangeEmail = (event) => {
     const valueEmail = event.target.value;
+    setRegisterError("");
     const result = validateField(valueEmail, isEmail);
     showError(result, setErrorEmail);
     handleChange(event);
@@ -45,21 +52,31 @@ export default function PopupSigin({ onSign }) {
   const isFormValid =
     validateField(data.email, isEmail) === "valid" &&
     validateField(data.password, isPass) === "valid" &&
-    validateField(data.nameUser, isName, 50)=== "valid";
-  
+    validateField(data.nameUser, isName, 50) === "valid";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const email = validateField(data.email, isEmail);
     const password = validateField(data.password, isPass);
-    const name = validateField(data.nameUser, isName, 50);
+    const name = validateField(data.nameUser, isName, 30);
 
     showError(email, setErrorEmail);
     showError(password, setErrorPass);
     showError(name, setErrorName);
 
     if (email === "valid" && password === "valid" && name === "valid") {
-      console.log("todo esta perfecto");
+      try {
+        const response = await register({
+          name: data.nameUser,
+          email: data.email,
+          password: data.password,
+        });
+
+        onSuccess();
+        console.log("Usuario registrado", response);
+      } catch (error) {
+        setRegisterError(error.message);
+      }
     }
   };
   return (
@@ -80,6 +97,11 @@ export default function PopupSigin({ onSign }) {
             required
           />
           <span className="inputs_span form__input-error_active">{`${errorEmail}`}</span>
+          {registerError && (
+            <span className="inputs_span form__input-error_active">
+              {registerError}
+            </span>
+          )}
         </div>
 
         <div className="popup__wrapper-formInput">
@@ -128,12 +150,16 @@ export default function PopupSigin({ onSign }) {
           <span className="inputs_span form__input-error_active">{`${errorName}`}</span>
         </div>
         <div className="popup__button">
-          <button type="submit" className="popup__button-submit" disabled={!isFormValid}>
+          <button
+            type="submit"
+            className="popup__button-submit"
+            disabled={!isFormValid}
+          >
             Inscribirse
           </button>
         </div>
       </form>
-      <button className="popup__button-link" onClick={onSign} >
+      <button className="popup__button-link" onClick={onSign}>
         o iniciar sesión
       </button>
     </>
