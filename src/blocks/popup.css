@@ -132,10 +132,10 @@
     position: absolute;
     left: 40%;
     top: 1px;
-    background: #FFF;
+    background: #d62121;
     padding: 12px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(0,0,0,0.4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.527);
     z-index: 10;
     font-size: 12px;
 }
@@ -183,6 +183,7 @@
     background: none;
     position: relative;
     left: 35%;
+    cursor: pointer;
 }
 
 .popup__button-link::first-letter{

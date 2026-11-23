@@ -1,4 +1,3 @@
-import perro from "../../images/image_perro.png";
 import NewsCard from "../../components/ComponentsMain/Cards/NewsCard";
 export default function SavedNewsCards({ savedArticles, handleRemoveArticle }) {
 

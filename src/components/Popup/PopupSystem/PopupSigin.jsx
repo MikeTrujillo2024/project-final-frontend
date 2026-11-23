@@ -11,9 +11,10 @@ import { login, getCurrentUser } from "../../../utils/auth";
 import { setToken } from "../../../utils/token";
 
 export default function PopupSigin({ onSignUp, onClose, setSavedArticles }) {
-  const { setIsLoggedIn,setUser } = useContext(CurrentUserContext);
+  const { setIsLoggedIn, setUser } = useContext(CurrentUserContext);
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
+  const [errorLoginData, setErrorLoginData] = useState("");
   const [showPassInfo, setShowPassInfo] = useState(false);
   const [data, setData] = useState({ email__Sigin: "", password__Sigin: "" });
 
@@ -22,6 +23,7 @@ export default function PopupSigin({ onSignUp, onClose, setSavedArticles }) {
     const valueEmail = event.target.value;
     const result = validateField(valueEmail, isEmail);
     showError(result, setErrorEmail);
+    setErrorLoginData("");
 
     handleChange(event);
   };
@@ -30,6 +32,7 @@ export default function PopupSigin({ onSignUp, onClose, setSavedArticles }) {
     const valuePassword = event.target.value;
     const resultPass = validateField(valuePassword, isPass);
     showError(resultPass, setErrorPassword);
+    setErrorLoginData("");
 
     handleChange(event);
   };
@@ -69,6 +72,7 @@ export default function PopupSigin({ onSignUp, onClose, setSavedArticles }) {
 
         onClose();
       } catch (error) {
+        setErrorLoginData(error.message);
         console.error("Error al iniciar sesión:", error.message);
       }
     }
@@ -121,6 +125,9 @@ export default function PopupSigin({ onSignUp, onClose, setSavedArticles }) {
             </div>
           )}
         </div>
+        {errorLoginData && (
+          <span className="inputs_span form__input-error_active">{`${errorLoginData}`}</span>
+        )}
         <div className="popup__button">
           <button
             type="submit"

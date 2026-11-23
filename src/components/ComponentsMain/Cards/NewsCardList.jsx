@@ -44,7 +44,8 @@ export default function NewsCardList({
                 key={article.url}
                 article={article}
                 isSaved={savedArticles.some(
-                  (savedArticle) => savedArticle.url === article.url,
+                  (savedArticle) => 
+                    (savedArticle.link || savedArticle.url) === article.url,
                 )}
                 onSave={onSave}
                 onRemove={onRemove}
