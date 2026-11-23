@@ -6,10 +6,13 @@ import { getToken, removeToken } from "./utils/token";
 import { getCurrentUser } from "./utils/auth";
 import Main from "./pages/Main/Main";
 import SavedNews from "./pages/SavedNews/SavedNews";
+import { getArticle, saveArticle, deleteArticle } from "./utils/ArticlesApi";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
+  //usamos para mostrar los datos guardados
+  const [savedArticles, setSavedArticles] = useState([]);
   // verificar si el token es valido
   useEffect(() => {
     const token = getToken();
@@ -19,6 +22,11 @@ function App() {
         .then((response) => {
           setUser(response.data.name);
           setIsLoggedIn(true);
+
+          return getArticle(token);
+        })
+        .then((response) => {
+          setSavedArticles(response.data);
         })
         .catch(() => {
           removeToken();
@@ -28,37 +36,50 @@ function App() {
     }
   }, []);
 
-  //usamos para mostrar los datos guardados
-  const [savedArticles, setSavedArticles] = useState(() => {
-    return JSON.parse(localStorage.getItem("articles")) || [];
-  });
-
   // handler para guardar articulos
-  const handleSaveArticle = (article) => {
+  const handleSaveArticle = async (article) => {
     //debemos saber si ya esta guardado en la card
     const alreadySaved = savedArticles.some(
       (savedArticle) => savedArticle.url === article.url,
     );
 
     if (!alreadySaved) {
-      setSavedArticles([...savedArticles, article]);
-      console.log("Artículo guardado:", article);
+      const token = getToken();
+
+      try {
+        const articleToSave = {
+          keyword: article.keyword,
+          title: article.title,
+          text: article.content,
+          date: article.publishedAt,
+          source: article.source.name,
+          link: article.url,
+          image: article.urlToImage,
+        };
+        const response = await saveArticle(articleToSave, token);
+        setSavedArticles((prevArticles) => [...prevArticles, response.data]);
+      } catch (error) {
+        console.error("Error al guardar:", error.message);
+      }
     }
   };
 
   //handler para eliminar articulo
-  const handleRemoveArticle = (article) => {
-    const updateArticles = savedArticles.filter(
-      (savedArticle) => savedArticle.url !== article.url,
-    );
+  const handleRemoveArticle = async (article) => {
+    const token = getToken();
+    try {
+      await deleteArticle(article._id, token);
 
-    setSavedArticles(updateArticles);
+      setSavedArticles((prevArticles) =>
+        prevArticles.filter(
+          (savedArticle) => savedArticle._id !== article._id,
+        ),
+      );
+      console.log("Artículo eliminado:", article._id);
+    } catch (error) {
+      console.error("Error al eliminar:", error.message);
+    }
   };
-
-  //guardamos los datos en localstorage
-  useEffect(() => {
-    localStorage.setItem("articles", JSON.stringify(savedArticles));
-  }, [savedArticles]);
 
   return (
     <CurrentUserContext.Provider

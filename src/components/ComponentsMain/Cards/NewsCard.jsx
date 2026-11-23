@@ -39,22 +39,22 @@ export default function NewsCard({ article, isSaved, onSave, isSavedPage, onRemo
         )}
       </div>
       <img
-        src={article.urlToImage || NotAviable}
+        src={article.urlToImage || article.image || NotAviable}
         alt="imagen cards"
         className={isSaved ? "section__img" : "cards__img"}
       />
       <div className={isSaved ? "section__info" : "cards__info"}>
         <div className={isSaved ? "section__date" : "cards__date"}>
-          {formataDate(article.publishedAt)}
+          {formataDate(article.publishedAt || article.date)}
         </div>
         <div className={isSaved ? "section__title-info" : "cards__title-info"}>
           {article.title}
         </div>
         <div className={isSaved ? "section__datail" : "cards__datail"}>
-          {article.description}
+          {article.description || article.text}
         </div>
         <div className={isSaved ? "section__footer" : "cards__footer"}>
-          {article.source.name}
+          {article.source.name || article.source}
         </div>
       </div>
     </div>

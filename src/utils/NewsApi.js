@@ -1,3 +1,6 @@
+/**
+ * NewsApi.js: búsqueda de noticias.
+ */
 const BASE_URL = "https://newsapi.org/v2/everything";
 
 const apiKey = import.meta.env.VITE_NEWS_API_KEY;

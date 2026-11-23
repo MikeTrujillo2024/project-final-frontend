@@ -17,6 +17,7 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
     removeToken();
     setIsLoggedIn(false);
     setUser(null);
+    setSavedArticles([]);
     setisMenuOpen(false);
     navigate("/");
   }

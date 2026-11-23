@@ -78,7 +78,8 @@ function Main({
     children: (
       <SigIn
         onSignUp={() => handleOpenPopup(sigInUp)}
-        onClose={handelClosePopup}
+        onClose={handelClosePopup}        
+        setSavedArticles={setSavedArticles}
       />
     ),
   };

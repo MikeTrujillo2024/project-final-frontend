@@ -1,3 +1,6 @@
+/**
+ * auth.js: registro, inicio de sesión y consulta del usuario.
+ * */
 const BASE_URL = "http://localhost:3000/users";
 
 function register({ name, email, password }) {

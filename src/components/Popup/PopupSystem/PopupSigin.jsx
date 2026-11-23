@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
+import { getArticle } from "../../../utils/ArticlesApi";
 import {
   isEmail,
   isPass,
@@ -9,7 +10,7 @@ import {
 import { login, getCurrentUser } from "../../../utils/auth";
 import { setToken } from "../../../utils/token";
 
-export default function PopupSigin({ onSignUp, onClose }) {
+export default function PopupSigin({ onSignUp, onClose, setSavedArticles }) {
   const { setIsLoggedIn,setUser } = useContext(CurrentUserContext);
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
@@ -63,6 +64,8 @@ export default function PopupSigin({ onSignUp, onClose }) {
         const userResponse = await getCurrentUser(response.token);
         setIsLoggedIn(true);
         setUser(userResponse.data.name);
+        const articlesResponse = await getArticle(response.token);
+        setSavedArticles(articlesResponse.data);
 
         onClose();
       } catch (error) {
