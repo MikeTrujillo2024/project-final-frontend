@@ -16,13 +16,12 @@ function Main({
   handleRemoveArticle,
 }) {
   const [isPopupOpen, setIsPopupOpen] = useState(null);
-  const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
+  const [, setIsRegisterSuccess] = useState(false);
 
   // guardamos los datos del formulario de busqueda en el estado searchValue
   const [searchKeyword, setSearchKeyword] = useState("");
   // usamos para mostrar articulos desde el principio
   const [articles, setArticles] = useState([]);
-
   //estado que indique si el usuario ya realizó una búsqueda.
   const [hasSearched, setHasSearched] = useState(false);
 
@@ -137,10 +136,12 @@ function Main({
         onOpenPopup={handleOpenPopup} // abrir el popup
         sigInPopup={sigInPop}
         closePopup={handelClosePopup}
+        setSavedArticles={setSavedArticles}
       />
 
       <SearchForm onSearch={handleSearch} />
       <NewsCardList
+        key={articles}
         articles={articles}
         savedArticles={savedArticles}
         onSave={(article) =>

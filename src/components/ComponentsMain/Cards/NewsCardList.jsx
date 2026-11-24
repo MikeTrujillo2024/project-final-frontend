@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Preloader from "../../Preloader/Preloader";
 import NotFound from "../../NotFound/NotFound";
 import NewsCard from "./NewsCard";
@@ -17,9 +17,6 @@ export default function NewsCardList({
 
   const showcards = articles.slice(0, visibleCards);
 
-  useEffect(() => {
-    setVisibleCards(3);
-  }, [articles]);
 
   const handleShowMore = () => {
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 3);

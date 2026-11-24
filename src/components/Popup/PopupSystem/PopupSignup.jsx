@@ -75,7 +75,8 @@ export default function PopupSigin({ onSign, onSuccess, onError }) {
         onSuccess();
         console.log("Usuario registrado", response);
       } catch (error) {
-        setRegisterError(error.message);
+        /* setRegisterError(error.message); */
+        onError(error.message)
       }
     }
   };

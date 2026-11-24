@@ -4,7 +4,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { removeToken } from "../../utils/token";
 import Popup from "../Popup/Popup";
 
-export default function Header({ popup, onOpenPopup, sigInPopup, closePopup }) {
+export default function Header({ popup, onOpenPopup, sigInPopup, closePopup, setSavedArticles }) {
   const { isLoggedIn, setIsLoggedIn, user, setUser } = useContext(CurrentUserContext);
   // menu Movil
   const [isMenuOpen, setisMenuOpen] = useState(false);
