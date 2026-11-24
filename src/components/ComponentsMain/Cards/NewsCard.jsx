@@ -10,6 +10,13 @@ export default function NewsCard({ article, isSaved, onSave, isSavedPage, onRemo
       year: "numeric",
     });
   };
+
+  const cleanText = (text) => {
+  return text
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+};
   return (
     <div className={isSaved ? "section__card" : "cards__card"}>
       <div className={isSavedPage ? "section__wrapper" : "cards__wrapper"}>
@@ -51,7 +58,7 @@ export default function NewsCard({ article, isSaved, onSave, isSavedPage, onRemo
           {article.title}
         </div>
         <div className={isSaved ? "section__datail" : "cards__datail"}>
-          {article.description || article.text}
+          {cleanText(article.description || article.text || "")}
         </div>
         <div className={isSaved ? "section__footer" : "cards__footer"}>
           {article.source.name || article.source}
