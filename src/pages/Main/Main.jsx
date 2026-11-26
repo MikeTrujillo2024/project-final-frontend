@@ -8,76 +8,29 @@ import SigIn from "../../components/Popup/PopupSystem/PopupSigin";
 import Signup from "../../components/Popup/PopupSystem/PopupSignup";
 import MessageSuccessPopup from "../../components/Popup/PopupSystem/PopupSuccessMessage";
 import MessageErrorPopup from "../../components/Popup/PopupSystem/PopupErrorMessage";
-import { getNews } from "../../utils/NewsApi";
+
 function Main({
   savedArticles,
   setSavedArticles,
   handleSaveArticle,
   handleRemoveArticle,
+  searchKeyword,
+  articles,
+  hasSearched,
+  isLoading,
+  error,
+  onSearch,
 }) {
   const [isPopupOpen, setIsPopupOpen] = useState(null);
   const [, setIsRegisterSuccess] = useState(false);
 
-  // guardamos los datos del formulario de busqueda en el estado searchValue
-  const [searchKeyword, setSearchKeyword] = useState("");
-  // usamos para mostrar articulos desde el principio
-  const [articles, setArticles] = useState([]);
-  //estado que indique si el usuario ya realizó una búsqueda.
-  const [hasSearched, setHasSearched] = useState(false);
-
-  //controlar preloader
-  const [isLoading, setIsLoading] = useState(false);
-
-  //Este estado guardará el mensaje que queremos mostrar cuando falle la petición.
-  const [error, setError] = useState("");
-
-  // estado que conservará los datos aunque cambiemos temporalmente el contenido del popup.
-  /*   const [dataSignup, setDataSignup] = useState({
-    email: "",
-    password: "",
-    nameUser: "",
-  }); */
-
-  //buscamos por searchForm
-  const handleSearch = async (keyword) => {
-    setHasSearched(true);
-    setSearchKeyword(keyword);
-    setError("");
-    setIsLoading(true);
-
-    try {
-      const articles = await getNews(keyword);
-      setArticles(articles);
-    } catch (error) {
-      if (!error.status) {
-        console.error("Error de conexión:", error.message);
-      }
-
-      console.error("Error al buscar noticias:", error);
-
-      if (error.status === 401) {
-        console.error("API key inválido o no autorizado");
-      } else if (error.status === 429) {
-        console.error("Se escedió el límite de solicitudes");
-      } else if (error.status >= 500) {
-        console.error("Error interno del servidor");
-      }
-
-      setError(
-        "Lo sentimos, algo ha salido mal durante la solicitud, Es posible que haya un problema de conexion o que el servidor ni funcione, por favor intentelo más tarde",
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   //sigin
   const sigInPop = {
-    title: "Iniciar Sesion",
+    title: "Iniciar sesión",
     children: (
       <SigIn
         onSignUp={() => handleOpenPopup(sigInUp)}
-        onClose={handelClosePopup}        
+        onClose={handleClosePopup}
         setSavedArticles={setSavedArticles}
       />
     ),
@@ -119,14 +72,14 @@ function Main({
       children: (
         <MessageErrorPopup
           message={message}
-          onBack={() => -handleOpenPopup(sigInUp)}
+          onBack={() => handleOpenPopup(sigInUp)}
         />
       ),
     });
   }
 
   //cerrar popup
-  function handelClosePopup() {
+  function handleClosePopup() {
     setIsPopupOpen(null);
   }
   return (
@@ -135,13 +88,12 @@ function Main({
         popup={isPopupOpen}
         onOpenPopup={handleOpenPopup} // abrir el popup
         sigInPopup={sigInPop}
-        closePopup={handelClosePopup}
+        closePopup={handleClosePopup}
         setSavedArticles={setSavedArticles}
       />
 
-      <SearchForm onSearch={handleSearch} />
+      <SearchForm onSearch={onSearch} />
       <NewsCardList
-        key={articles}
         articles={articles}
         savedArticles={savedArticles}
         onSave={(article) =>

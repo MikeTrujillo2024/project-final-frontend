@@ -7,17 +7,38 @@ import { getCurrentUser } from "./utils/auth";
 import Main from "./pages/Main/Main";
 import SavedNews from "./pages/SavedNews/SavedNews";
 import { getArticle, saveArticle, deleteArticle } from "./utils/ArticlesApi";
+import {getNews} from "./utils/NewsApi";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
+  const [isCheckingToken, setIsCheckingToken] = useState(true);
+
   //usamos para mostrar los datos guardados
   const [savedArticles, setSavedArticles] = useState([]);
+
+  // guardamos los datos del formulario de busqueda en el estado searchValue
+  const [searchKeyword, setSearchKeyword] = useState("");
+  // usamos para mostrar articulos desde el principio
+  const [articles, setArticles] = useState([]);
+  //estado que indique si el usuario ya realizó una búsqueda.
+  const [hasSearched, setHasSearched] = useState(false);
+
+  //controlar preloader
+  const [isLoading, setIsLoading] = useState(false);
+
+  //Este estado guardará el mensaje que queremos mostrar cuando falle la petición.
+  const [error, setError] = useState("");
+
   // verificar si el token es valido
   useEffect(() => {
     const token = getToken();
 
-    if (token) {
+    if(!token){
+      setIsCheckingToken(false);
+      return;
+    }
+
       getCurrentUser(token)
         .then((response) => {
           setUser(response.data.name);
@@ -32,15 +53,43 @@ function App() {
           removeToken();
           setIsLoggedIn(false);
           setUser(null);
-        });
-    }
+        })
+        .finally(() => {
+      setIsCheckingToken(false);
+    });
   }, []);
+
+//buscamos por searchForm
+  const handleSearch = async (keyword) => {
+    setHasSearched(true);
+    setSearchKeyword(keyword);
+    setError("");
+    setIsLoading(true);
+
+    try {
+      const articles = await getNews(keyword);
+      setArticles(articles);
+    } catch (error) {
+      if (error.status === 401) {
+        console.error("API key inválido o no autorizado");
+      } else if (error.status === 429) {
+        console.error("Se excedió el límite de solicitudes");
+      } else if (error.status >= 500) {
+        console.error("Error interno del servidor");
+      }
+      setError(
+        "Lo sentimos, algo ha salido mal durante la solicitud, Es posible que haya un problema de conexion o que el servidor no funcione, por favor intentelo más tarde",
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // handler para guardar articulos
   const handleSaveArticle = async (article) => {
     //debemos saber si ya esta guardado en la card
     const alreadySaved = savedArticles.some(
-      (savedArticle) => savedArticle.url === article.url,
+      (savedArticle) => savedArticle.link === article.url,
     );
 
     if (!alreadySaved) {
@@ -75,7 +124,6 @@ function App() {
           (savedArticle) => savedArticle._id !== article._id,
         ),
       );
-      console.log("Artículo eliminado:", article._id);
     } catch (error) {
       console.error("Error al eliminar:", error.message);
     }
@@ -88,6 +136,7 @@ function App() {
         setIsLoggedIn,
         user,
         setUser,
+        isCheckingToken,
       }}
     >
       <Routes>
@@ -99,6 +148,12 @@ function App() {
               setSavedArticles={setSavedArticles}
               handleSaveArticle={handleSaveArticle}
               handleRemoveArticle={handleRemoveArticle}
+              searchKeyword={searchKeyword}
+              articles={articles}
+              hasSearched={hasSearched}
+              isLoading={isLoading}
+              error={error}
+              onSearch={handleSearch}
             />
           }
         />
@@ -109,6 +164,7 @@ function App() {
               <SavedNews
                 savedArticles={savedArticles}
                 handleRemoveArticle={handleRemoveArticle}
+                setSavedArticles={setSavedArticles}
               />
             </ProtectedRoute>
           }

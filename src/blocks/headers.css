@@ -124,7 +124,7 @@
     }
 
 
-    .hader_active {
+    .hader__active {
         background: #050505;
         border-bottom: 1px solid red;
     }
@@ -149,12 +149,12 @@
         transition: transform 0.3s ease;
     }
 
-    .header__menu-barraOne--acttive {
+    .header__menu-barraOne--active {
         position: relative;
         transform: rotate(45deg);
     }
 
-    .header__menu-barraTwo--acttive {
+    .header__menu-barraTwo--active {
         position: relative;
         top: -6px;
         transform: rotate(-45deg);

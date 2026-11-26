@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Preloader from "../../Preloader/Preloader";
 import NotFound from "../../NotFound/NotFound";
 import NewsCard from "./NewsCard";
+import { CARDS_PER_PAGE } from "../../../utils/constants";
 export default function NewsCardList({
   articles,
   onSave,
@@ -11,15 +12,18 @@ export default function NewsCardList({
   isLoading,
   error,
 }) {
-
   // controla la cantidad de tarjetas visibles
   const [visibleCards, setVisibleCards] = useState(3);
 
   const showcards = articles.slice(0, visibleCards);
 
+  // Reinicia la cantidad de tarjetas cuando cambia la búsqueda
+  useEffect(() => {
+    setVisibleCards(CARDS_PER_PAGE);
+  }, [articles]);
 
   const handleShowMore = () => {
-    setVisibleCards((prevVisibleCards) => prevVisibleCards + 3);
+    setVisibleCards((prevVisibleCards) => prevVisibleCards + CARDS_PER_PAGE);
   };
 
   return (
@@ -33,7 +37,7 @@ export default function NewsCardList({
       ) : (
         <>
           <div className="cards__title">
-            <h2 className="cards__title-huno">Search Results</h2>
+            <h2 className="cards__title-huno">Resultado de búsqueda</h2>
           </div>
           <div className="cards__card-list">
             {showcards.map((article) => (
@@ -41,7 +45,7 @@ export default function NewsCardList({
                 key={article.url}
                 article={article}
                 isSaved={savedArticles.some(
-                  (savedArticle) => 
+                  (savedArticle) =>
                     (savedArticle.link || savedArticle.url) === article.url,
                 )}
                 onSave={onSave}
@@ -52,7 +56,7 @@ export default function NewsCardList({
           {visibleCards < articles.length && (
             <div className="cards__wrapper-button">
               <button className="cards__button-more" onClick={handleShowMore}>
-                Show more
+                Mostrar más
               </button>
             </div>
           )}

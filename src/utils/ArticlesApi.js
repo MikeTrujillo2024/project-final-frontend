@@ -1,8 +1,9 @@
+import { BACKEND_URL } from './constants';
 /**
  * ArticlesApi.js: guardar, consultar y eliminar artículos en nuestro backend.
  */
 
-const BASE_URL = "http://localhost:3000/articles";
+const BASE_URL = `${BACKEND_URL}/articles`;
 
 function getArticle(token) {
     return fetch(BASE_URL, {
@@ -11,7 +12,7 @@ function getArticle(token) {
         },
     }).then((response) => {
         if (!response.ok) {
-            throw new Error("No se pudireon obtener los artículos");
+            throw new Error("No se pudieron obtener los artículos");
         }
 
         return response.json();
@@ -28,8 +29,6 @@ function saveArticle(article, token) {
         body: JSON.stringify(article),
     }).then(async (response) => {
         if (!response.ok) {
-            const errorData = await response.json();
-            console.log("Error del servidor:", errorData);
             throw new Error("No se pudo guardar el artículo");
         }
         return response.json();

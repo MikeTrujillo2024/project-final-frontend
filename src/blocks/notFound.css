@@ -12,7 +12,7 @@
 .not__found-title {
     width: 356px;
     height: 30px;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", Arial, sans-serif;
     font-size: 26px;
     font-weight: 400;
     line-height: 30px;
@@ -23,7 +23,7 @@
     width: 356px;
     height: 48px;
     font-size: 18px;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", Arial, sans-serif;
     font-weight: 400;
     line-height: 18px;
     line-height: 24px;

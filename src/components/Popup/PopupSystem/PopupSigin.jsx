@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
 import { getArticle } from "../../../utils/ArticlesApi";
+
 import {
   isEmail,
   isPass,
@@ -73,15 +74,14 @@ export default function PopupSigin({ onSignUp, onClose, setSavedArticles }) {
         onClose();
       } catch (error) {
         setErrorLoginData(error.message);
-        console.error("Error al iniciar sesión:", error.message);
       }
     }
   };
   return (
     <>
-      <form className="poup__form-sigin" onSubmit={handleSubmit} noValidate>
+      <form className="popup__form-sigin" onSubmit={handleSubmit} noValidate>
         <div className="popup__wrapper-formInput">
-          <label className="poup__form-label" htmlFor="popup__sigin-email">
+          <label className="popup__form-label" htmlFor="popup__sigin-email">
             Correo electrónico
           </label>
           <input
@@ -97,7 +97,7 @@ export default function PopupSigin({ onSignUp, onClose, setSavedArticles }) {
           <span className="inputs_span form__input-error_active">{`${errorEmail}`}</span>
         </div>
         <div className="popup__wrapper-formInput">
-          <label className="poup__form-label" htmlFor="popup__sigin-password">
+          <label className="popup__form-label" htmlFor="popup__sigin-password">
             Contraseña
           </label>
           <input

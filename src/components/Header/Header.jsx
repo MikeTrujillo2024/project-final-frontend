@@ -24,7 +24,7 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup, set
   
   return (
     <header
-      className={`header ${isMenuOpen ? "hader_active" : ""}  ${isSavedNews ? "header_saved-news header__news" : ""}`}
+      className={`header ${isMenuOpen ? "hader__active" : ""}  ${isSavedNews ? "header_saved-news header__news" : ""}`}
     >
       <Link to="/" className={`header__logo ${isMenuOpen ? "header__words-white" : ""} `}>NewsExplorer</Link>
       <button
@@ -32,10 +32,10 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup, set
         onClick={() => setisMenuOpen(!isMenuOpen)}
       >
         <i
-          className={`header__menu-barraOne  ${isMenuOpen ? "header__menu-barraOne--acttive " : "header__active_movil"} ${!isSavedNews ? "header__savedNone" : ""}`}
+          className={`header__menu-barraOne  ${isMenuOpen ? "header__menu-barraOne--active " : "header__active_movil"} ${!isSavedNews ? "header__savedNone" : ""}`}
         ></i>
         <i
-          className={`header__menu-barraTwo  ${isMenuOpen ? "header__menu-barraTwo--acttive" : "header__active_movil"}  ${!isSavedNews ? "header__savedNone" : ""}`}
+          className={`header__menu-barraTwo  ${isMenuOpen ? "header__menu-barraTwo--active" : "header__active_movil"}  ${!isSavedNews ? "header__savedNone" : ""}`}
         ></i>
       </button>
       <nav className="header__navigation">
@@ -66,7 +66,7 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup, set
             className="header__button"
             onClick={() => onOpenPopup(sigInPopup)}
           >
-            Iniciar Sesion
+            Iniciar sesión
           </button>
         )}
       </nav>
@@ -92,7 +92,7 @@ export default function Header({ popup, onOpenPopup, sigInPopup, closePopup, set
                 className="header__button"
                 onClick={() => onOpenPopup(sigInPopup)}
               >
-                Iniciar Sesion
+                Iniciar sesión
               </button>
             )}
           </nav>

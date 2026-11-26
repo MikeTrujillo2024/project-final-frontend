@@ -1,4 +1,4 @@
-export default function popupErrorMessage({message, onBack}) {
+export default function PopupErrorMessage({message, onBack}) {
   return (
     <div>
       <p>{message}</p>

@@ -12,7 +12,7 @@ export default function SavedNewsCards({ savedArticles, handleRemoveArticle }) {
         ) : (
           savedArticles.map((article) => (
             <NewsCard
-              key={article.url}
+              key={article._id}
               article={article}
               isSaved={true}
               isSavedPage={true}

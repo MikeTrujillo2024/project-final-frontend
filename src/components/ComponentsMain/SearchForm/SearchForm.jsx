@@ -7,7 +7,7 @@ export default function SearchForm({ onSearch }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const keyword = searchValue.trim();
-    if (!keyword.trim()) {
+    if (!keyword) {
       setErrorMessage("Por favor, introduzca una palabra clave");
       return;
     }
@@ -23,7 +23,7 @@ export default function SearchForm({ onSearch }) {
           Encuentra las últimas noticias sobre cualquier tema y guárdalas en tu
           cuenta personal.
         </p>
-        <div className="search__form" noValidate onSubmit={handleSubmit}>
+        <div className="search__form">
           <form noValidate onSubmit={handleSubmit}>
             <input
               type="text"
@@ -33,6 +33,7 @@ export default function SearchForm({ onSearch }) {
               onChange={(e) => {setSearchValue(e.target.value); setErrorMessage("")}}
               className="search__input"
               placeholder="Introduce un tema"
+              aria-invalid={Boolean(errorMessage)}
             />
             {errorMessage && (
               <span className="search__form-error">{errorMessage}</span>

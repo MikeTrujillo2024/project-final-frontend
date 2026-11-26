@@ -1,7 +1,8 @@
+import { BACKEND_URL } from './constants';
 /**
  * auth.js: registro, inicio de sesión y consulta del usuario.
  * */
-const BASE_URL = "http://localhost:3000/users";
+const BASE_URL = `${BACKEND_URL}/users`;
 
 function register({ name, email, password }) {
     return fetch(`${BASE_URL}/signup`, {
@@ -52,4 +53,3 @@ function getCurrentUser(token) {
 }
 
 export { register, login, getCurrentUser }
-

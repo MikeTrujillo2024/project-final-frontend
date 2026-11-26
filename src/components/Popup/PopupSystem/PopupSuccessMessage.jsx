@@ -1,8 +1,8 @@
-export default function popupSuccessMessage({
+export default function PopupSuccessMessage({
   setIsRegisterSuccess,
   onLogin}) {
   return (
-    <div className="poup__form-sigin">
+    <div className="popup__form-sigin">
       <button
         className="popup__button-submitSuccess"
         onClick={() => {

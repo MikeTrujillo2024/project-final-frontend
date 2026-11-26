@@ -7,7 +7,8 @@ import {
   showError,
 } from "../../../utils/Validation";
 import { register } from "../../../utils/auth";
-export default function PopupSigin({ onSign, onSuccess, onError }) {
+import { MAX_LENGTH } from "../../../utils/constants";
+export default function PopupSignup({ onSign, onSuccess, onError }) {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPass, setErrorPass] = useState("");
   const [showPassInfo, setShowPassInfo] = useState(false);
@@ -39,7 +40,7 @@ export default function PopupSigin({ onSign, onSuccess, onError }) {
   //valid userName
   const handleChangeUserName = (event) => {
     const valueUser = event.target.value;
-    const resultUser = validateField(valueUser, isName, 50);
+    const resultUser = validateField(valueUser, isName, MAX_LENGTH);
     showError(resultUser, setErrorName);
     handleChange(event);
   };
@@ -52,13 +53,13 @@ export default function PopupSigin({ onSign, onSuccess, onError }) {
   const isFormValid =
     validateField(data.email, isEmail) === "valid" &&
     validateField(data.password, isPass) === "valid" &&
-    validateField(data.nameUser, isName, 50) === "valid";
+    validateField(data.nameUser, isName, MAX_LENGTH) === "valid";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = validateField(data.email, isEmail);
     const password = validateField(data.password, isPass);
-    const name = validateField(data.nameUser, isName, 30);
+    const name = validateField(data.nameUser, isName, MAX_LENGTH);
 
     showError(email, setErrorEmail);
     showError(password, setErrorPass);
@@ -73,7 +74,6 @@ export default function PopupSigin({ onSign, onSuccess, onError }) {
         });
 
         onSuccess();
-        console.log("Usuario registrado", response);
       } catch (error) {
         if (error.status === 409) {
           setRegisterError(error.message);
@@ -85,9 +85,9 @@ export default function PopupSigin({ onSign, onSuccess, onError }) {
   };
   return (
     <>
-      <form className="poup__form-sigin" onSubmit={handleSubmit} noValidate>
+      <form className="popup__form-sigin" onSubmit={handleSubmit} noValidate>
         <div className="popup__wrapper-formInput">
-          <label className="poup__form-label" htmlFor="popup__email">
+          <label className="popup__form-label" htmlFor="popup__email">
             Correo electrónico
           </label>
           <input
@@ -109,7 +109,7 @@ export default function PopupSigin({ onSign, onSuccess, onError }) {
         </div>
 
         <div className="popup__wrapper-formInput">
-          <label className="poup__form-label" htmlFor="popup__password">
+          <label className="popup__form-label" htmlFor="popup__password">
             Contraseña
           </label>
           <input
@@ -138,7 +138,7 @@ export default function PopupSigin({ onSign, onSuccess, onError }) {
           )}
         </div>
         <div className="popup__wrapper-formInput">
-          <label className="poup__form-label" htmlFor="popup__name">
+          <label className="popup__form-label" htmlFor="popup__name">
             Nombre de usuario
           </label>
           <input

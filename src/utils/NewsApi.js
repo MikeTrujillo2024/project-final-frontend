@@ -1,16 +1,19 @@
 /**
  * NewsApi.js: búsqueda de noticias.
  */
-const BASE_URL = "https://newsapi.org/v2/everything";
+import {
+ NEWS_API_URL,
+ NEWS_PAGE_SIZE,
+ NEWS_DAYS_RANGE,
+} from './constants';
 
 const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-
 //obtenemos las fechas to y from
 function getDates() {
     const fechaActual = new Date();
 
     const nuevaFecha = new Date(fechaActual);
-    nuevaFecha.setDate(nuevaFecha.getDate() - 7);
+    nuevaFecha.setDate(nuevaFecha.getDate() - NEWS_DAYS_RANGE);
 
     return {
         from: nuevaFecha.toISOString().split("T")[0],
@@ -26,10 +29,10 @@ async function getNews(keyword) {
         apiKey: apiKey,
         from: from,
         to: to,
-        pageSize: 100,
+        pageSize: NEWS_PAGE_SIZE,
     });
 
-    const url = BASE_URL + "?" + params.toString();
+    const url = NEWS_API_URL + "?" + params.toString();
 
     // return fetch(url);
     const response = await fetch(url);
