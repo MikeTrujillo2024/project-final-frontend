@@ -6,7 +6,7 @@ import SavedNewsCards from "./SavedNewsCards";
 function SavedNews({ savedArticles, handleRemoveArticle, setSavedArticles }) {
   return (
     <>
-      <Header setSavedArticles={setSavedArticles}/>
+      <Header setSavedArticles={setSavedArticles} />
       <SavedNewHeader savedArticles={savedArticles} />
       <SavedNewsCards
         savedArticles={savedArticles}
