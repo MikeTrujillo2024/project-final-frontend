@@ -6,7 +6,9 @@
     align-items: center;
     padding: 0 104px;
     box-sizing: border-box;
-
+    bottom: 100%;
+    position: relative;
+    z-index: 9;
 }
 
 .footer__copyright {
@@ -26,10 +28,22 @@
     cursor: pointer;
 }
 
+.footer__link{
+    text-decoration: none;
+    color: #1A1B22
+}
+
+.footer__redesSociales-img:hover,
+.footer__link:hover {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
 .footer__redesSociales-img {
     width: 24px;
     height: 24px;
 }
+
 
 /* Tablet */
 @media screen and (max-width: 768px) {
@@ -51,6 +65,7 @@
         justify-content: flex-end;
         padding: 0 104px;
         box-sizing: border-box;
+       
     }
 
     .footer__redesSociales-lista {
@@ -62,6 +77,7 @@
         align-items: flex-start;
         gap: 24px;
         cursor: pointer;
+        
     }
 
     .footer__lista-practicum {

@@ -1,4 +1,4 @@
-import imageMike from "../../images/mike.jpg";
+import imageMike from "../../../images/mike.jpg";
 export default function About() {
   return (
     <div className="about">
